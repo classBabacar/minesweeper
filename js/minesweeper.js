@@ -8,8 +8,8 @@ class Minesweeper {
     this.placeMines(minesToPlace);
     this.generateFieldCount();
 
-    for (var row = 0; row < this.board.length; ++row) {
-      for (var col = 0; col < this.board[row].length; ++col) {
+    for (let row = 0; row < this.board.length; ++row) {
+      for (let col = 0; col < this.board[row].length; ++col) {
         process.stdout.write(this.board[row][col] + " ");
       }
       console.log("");
@@ -19,7 +19,7 @@ class Minesweeper {
   placeMines(minesToPlace) {
     const minePositions = new Set();
 
-    for (let minesPlaced = 0; minesPlaced < minesToPlace; minesPlaced++) {
+    for (let minesPlaced = 0; minesPlaced < minesToPlace; ++minesPlaced) {
       const length = minePositions.size;
       while (minePositions.size === length) {
         const randomRow = this.generateCoordInBound(this.rowMax);
@@ -37,8 +37,8 @@ class Minesweeper {
   }
 
   generateFieldCount() {
-    for (var row = 0; row < this.board.length; ++row) {
-      for (var col = 0; col < this.board[row].length; ++col) {
+    for (let row = 0; row < this.board.length; ++row) {
+      for (let col = 0; col < this.board[row].length; ++col) {
         if (this.board[row][col] == this.mineValue) this.addMineCount(row, col);
       }
     }
