@@ -4,9 +4,8 @@ class CellState {
     this.state = "unopened";
   }
 
-  setCellToMine() {
-    this.value = -999;
-    this.state = "unopened";
+  setCellToMine(value) {
+    this.value = value;
   }
 
   setCellToFlag() {

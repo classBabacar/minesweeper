@@ -38,7 +38,7 @@ class Minesweeper {
         const randomCol = this.generateCoordInBound(this.colMax);
 
         minePositions.add(`${randomRow},${randomCol}`);
-        this.board[randomRow][randomCol].setCellToMine();
+        this.board[randomRow][randomCol].setCellToMine(this.mineValue);
       }
     }
   }
