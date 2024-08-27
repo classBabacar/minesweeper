@@ -1,5 +1,5 @@
 var Minesweeper = require("./minesweeper.js");
-const rows = 4;
-const cols = 3;
-const minesToPlace = 2;
+const rows = 10;
+const cols = 10;
+const minesToPlace = 3;
 var TEST = new Minesweeper(rows, cols, minesToPlace);

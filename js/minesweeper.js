@@ -1,6 +1,8 @@
+var CellState = require("./cellstate.js");
+
 class Minesweeper {
   constructor(rows, cols, minesToPlace) {
-    this.board = Array.from({ length: rows }, () => new Array(cols).fill(0));
+    this.board = this.setupBoard(rows, cols);
     this.rowMax = rows;
     this.colMax = cols;
     this.mineValue = -999; // value used to indicate a mine
@@ -10,10 +12,20 @@ class Minesweeper {
 
     for (let row = 0; row < this.board.length; ++row) {
       for (let col = 0; col < this.board[row].length; ++col) {
-        process.stdout.write(this.board[row][col] + " ");
+        process.stdout.write(this.board[row][col].value + " ");
+        // process.stdout.write(this.board[row][col].state + " ");
       }
       console.log("");
     }
+  }
+
+  setupBoard(rows, cols) {
+    let board = [];
+    for (let row = 0; row < rows; ++row) {
+      board[row] = [];
+      for (let col = 0; col < cols; ++col) board[row][col] = new CellState();
+    }
+    return board;
   }
 
   placeMines(minesToPlace) {
@@ -26,7 +38,7 @@ class Minesweeper {
         const randomCol = this.generateCoordInBound(this.colMax);
 
         minePositions.add(`${randomRow},${randomCol}`);
-        this.board[randomRow][randomCol] = this.mineValue;
+        this.board[randomRow][randomCol].setCellToMine();
       }
     }
   }
@@ -39,7 +51,8 @@ class Minesweeper {
   generateFieldCount() {
     for (let row = 0; row < this.board.length; ++row) {
       for (let col = 0; col < this.board[row].length; ++col) {
-        if (this.board[row][col] == this.mineValue) this.addMineCount(row, col);
+        if (this.board[row][col].getCellValue() == this.mineValue)
+          this.addMineCount(row, col);
       }
     }
   }
@@ -65,12 +78,12 @@ class Minesweeper {
         newCol < 0 ||
         newRow >= this.rowMax ||
         newCol >= this.colMax ||
-        this.board[newRow][newCol] == this.mineValue
+        this.board[newRow][newCol].getCellValue() == this.mineValue
       ) {
         continue;
       }
 
-      this.board[newRow][newCol] += 1;
+      this.board[newRow][newCol].incrementCellValue();
     }
   }
 }
