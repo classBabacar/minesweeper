@@ -1,4 +1,4 @@
-class CellState {
+export default class CellState {
   constructor() {
     this.value = 0;
     this.state = "unopened";
@@ -24,5 +24,3 @@ class CellState {
     this.value += 1;
   }
 }
-
-module.exports = CellState;
