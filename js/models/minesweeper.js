@@ -53,6 +53,7 @@ export default class Minesweeper {
 
   addMineCount(row, col) {
     const directions = [
+      // [Row, Col] or [Y-Coordinate, X-Coordinate]
       [0, -1], // Left
       [0, 1], // Right
       [-1, 0], // Up
