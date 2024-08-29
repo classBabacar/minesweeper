@@ -2,33 +2,34 @@ import CellState from "./cellstate.js";
 
 export default class Minesweeper {
   constructor(rows, cols, minesToPlace) {
-    this.board = this.setupBoard(rows, cols);
-    this.rowMax = rows;
-    this.colMax = cols;
+    this.rows = rows;
+    this.cols = cols;
+    this.minesToPlace = minesToPlace;
     this.mineValue = -999; // value used to indicate a mine
 
-    this.placeMines(minesToPlace);
+    this.board = this.setupBoard();
+    this.placeMines();
     this.generateFieldCount();
-    this.createVisualField(rows, cols);
   }
 
-  setupBoard(rows, cols) {
+  setupBoard() {
     let board = [];
-    for (let row = 0; row < rows; ++row) {
+    for (let row = 0; row < this.rows; ++row) {
       board[row] = [];
-      for (let col = 0; col < cols; ++col) board[row][col] = new CellState();
+      for (let col = 0; col < this.cols; ++col)
+        board[row][col] = new CellState();
     }
     return board;
   }
 
-  placeMines(minesToPlace) {
+  placeMines() {
     const minePositions = new Set();
 
-    for (let minesPlaced = 0; minesPlaced < minesToPlace; ++minesPlaced) {
+    for (let minesPlaced = 0; minesPlaced < this.minesToPlace; ++minesPlaced) {
       const length = minePositions.size;
       while (minePositions.size === length) {
-        const randomRow = this.generateCoordInBound(this.rowMax);
-        const randomCol = this.generateCoordInBound(this.colMax);
+        const randomRow = this.generateCoordInBound(this.rows);
+        const randomCol = this.generateCoordInBound(this.cols);
 
         minePositions.add(`${randomRow},${randomCol}`);
         this.board[randomRow][randomCol].setCellToMine(this.mineValue);
@@ -69,53 +70,14 @@ export default class Minesweeper {
       if (
         newRow < 0 ||
         newCol < 0 ||
-        newRow >= this.rowMax ||
-        newCol >= this.colMax ||
+        newRow >= this.rows ||
+        newCol >= this.cols ||
         this.board[newRow][newCol].getCellValue() == this.mineValue
       ) {
         continue;
       }
 
       this.board[newRow][newCol].incrementCellValue();
-    }
-  }
-
-  createVisualField(rows, cols) {
-    var lastClicked;
-    var grid = clickableGrid(rows, cols, function (el, row, col, i) {
-      console.log("You clicked on element:", el);
-      console.log("You clicked on row:", row);
-      console.log("You clicked on col:", col);
-      console.log("You clicked on item #:", i);
-
-      el.className = "clicked";
-      // if (lastClicked) lastClicked.className = "";
-      // lastClicked = el;
-    });
-
-    document.body.appendChild(grid);
-
-    function clickableGrid(rows, cols, callback) {
-      var i = 0;
-      var grid = document.createElement("table");
-      grid.className = "grid";
-      for (var r = 0; r < rows; ++r) {
-        var tr = grid.appendChild(document.createElement("tr"));
-        for (var c = 0; c < cols; ++c) {
-          var cell = tr.appendChild(document.createElement("td"));
-          cell.innerHTML = ++i;
-          cell.addEventListener(
-            "click",
-            (function (el, r, c, i) {
-              return function () {
-                callback(el, r, c, i);
-              };
-            })(cell, r, c, i),
-            false
-          );
-        }
-      }
-      return grid;
     }
   }
 }
