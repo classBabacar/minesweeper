@@ -5,13 +5,12 @@ export default class DisplayView {
     this.rows = rows;
     this.cols = cols;
     this.minesToPlace = minesToPlace;
-
     this.Minesweeper = new Minesweeper(rows, cols, minesToPlace);
   }
 
   displayBoard() {
-    var lastClicked;
-    var grid = clickableGrid(this.rows, this.cols, function (el, row, col, i) {
+    let lastClicked;
+    let grid = clickableGrid(this.rows, this.cols, function (el, row, col, i) {
       console.log("You clicked on element:", el);
       console.log("You clicked on row:", row);
       console.log("You clicked on col:", col);
@@ -25,13 +24,13 @@ export default class DisplayView {
     document.body.appendChild(grid);
 
     function clickableGrid(rows, cols, callback) {
-      var i = 0;
-      var grid = document.createElement("table");
+      let i = 0;
+      let grid = document.createElement("table");
       grid.className = "grid";
-      for (var r = 0; r < rows; ++r) {
-        var tr = grid.appendChild(document.createElement("tr"));
-        for (var c = 0; c < cols; ++c) {
-          var cell = tr.appendChild(document.createElement("td"));
+      for (let r = 0; r < rows; ++r) {
+        let tr = grid.appendChild(document.createElement("tr"));
+        for (let c = 0; c < cols; ++c) {
+          let cell = tr.appendChild(document.createElement("td"));
           cell.innerHTML = ++i;
           cell.addEventListener(
             "click",

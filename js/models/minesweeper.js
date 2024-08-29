@@ -43,8 +43,8 @@ export default class Minesweeper {
   }
 
   generateFieldCount() {
-    for (let row = 0; row < this.board.length; ++row) {
-      for (let col = 0; col < this.board[row].length; ++col) {
+    for (let row = 0; row < this.rows; ++row) {
+      for (let col = 0; col < this.cols; ++col) {
         if (this.board[row][col].getCellValue() == this.mineValue)
           this.addMineCount(row, col);
       }
