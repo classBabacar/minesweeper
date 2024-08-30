@@ -6,6 +6,7 @@ export default class DisplayView {
     this.cols = cols;
     this.minesToPlace = minesToPlace;
     this.minesweeper = new Minesweeper(rows, cols, minesToPlace);
+    // console.log("minesweeper board \n", this.minesweeper.toString());
   }
 
   displayBoard() {

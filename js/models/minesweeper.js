@@ -12,6 +12,17 @@ export default class Minesweeper {
     this.generateFieldCount();
   }
 
+  toString() {
+    let boardString = "";
+    for (let row = 0; row < this.rows; ++row) {
+      for (let col = 0; col < this.cols; ++col) {
+        boardString += this.board[row][col].getCellValue() + " ";
+      }
+      boardString += "\n";
+    }
+    return boardString;
+  }
+
   setupBoard() {
     let board = [];
     for (let row = 0; row < this.rows; ++row) {
