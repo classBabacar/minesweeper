@@ -81,4 +81,8 @@ export default class Minesweeper {
       this.board[newRow][newCol].incrementCellValue();
     }
   }
+
+  getCellValue(row, col) {
+    return this.board[row][col].getCellValue();
+  }
 }
