@@ -21,6 +21,6 @@ export default class CellState {
   }
 
   incrementCellValue() {
-    this.value += 1;
+    this.value++;
   }
 }
