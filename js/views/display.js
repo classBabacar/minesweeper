@@ -16,6 +16,7 @@ export default class DisplayView {
       console.log("You clicked on row:", row);
       console.log("You clicked on col:", col);
       console.log("You did this action:", action);
+      this.minesweeper.expandField(row, col);
       el.className = "clicked";
     });
     document.body.appendChild(grid);

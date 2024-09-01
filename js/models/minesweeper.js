@@ -96,4 +96,8 @@ export default class Minesweeper {
   getCellValue(row, col) {
     return this.board[row][col].getCellValue();
   }
+
+  expandField(row, col) {
+    // some game logic that I need to figure out
+  }
 }
