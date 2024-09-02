@@ -98,6 +98,8 @@ export default class Minesweeper {
   }
 
   expandField(row, col) {
-    // some game logic that I need to figure out
+    // Case 1: If a user clicks a number, reveal that number
+    // Case 2: If a user clicks a 0/empty space, expand out in all directions until you hit a number
+    // Case 3: If a user clicks a mine, game over :)
   }
 }
