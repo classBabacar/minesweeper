@@ -10,13 +10,14 @@ export default class DisplayView {
   }
 
   displayBoard() {
+    let minesweeper = this.minesweeper;
     let grid = this.clickableGrid(function (el, row, col, action) {
       // This will be used to call the minesweeper model
       console.log("You clicked on element:", el);
       console.log("You clicked on row:", row);
       console.log("You clicked on col:", col);
       console.log("You did this action:", action);
-      this.minesweeper.expandField(row, col);
+      minesweeper.expandField(row, col);
       el.className = "clicked";
     });
     document.body.appendChild(grid);
