@@ -1,6 +1,6 @@
 import Minesweeper from "../models/minesweeper.js";
 
-export default class DisplayView {
+export default class ViewHandler {
   constructor(rows, cols, minesToPlace) {
     this.rows = rows;
     this.cols = cols;
@@ -10,15 +10,16 @@ export default class DisplayView {
   }
 
   displayBoard() {
-    let minesweeper = this.minesweeper;
+    let vh = this;
     let grid = this.clickableGrid(function (el, row, col, action) {
       // This will be used to call the minesweeper model
       console.log("You clicked on element:", el);
       console.log("You clicked on row:", row);
       console.log("You clicked on col:", col);
       console.log("You did this action:", action);
-      minesweeper.expandField(row, col);
-      el.className = "clicked";
+      vh.setDocumentToFlag(row, col);
+      this.minesweeper.setFlag(row, col);
+      console.log("this location is", this.minesweeper.isFlag);
     });
     document.body.appendChild(grid);
   }
@@ -26,6 +27,7 @@ export default class DisplayView {
   clickableGrid(callback) {
     let grid = document.createElement("table");
     grid.className = "grid";
+    grid.id = "temp";
     for (let r = 0; r < this.rows; ++r) {
       let tr = grid.appendChild(document.createElement("tr"));
       for (let c = 0; c < this.cols; ++c) {
@@ -35,13 +37,19 @@ export default class DisplayView {
           "click",
           (function (el, r, c, action) {
             return function () {
-              callback(el, r, c, action);
+              callback(el, r, c, "flag");
             };
-          })(cell, r, c, "rightclick"),
+          })(cell, r, c, "click"),
           false
         );
       }
     }
     return grid;
+  }
+
+  setDocumentToFlag(row, col) {
+    // let isFlag = this.minesweeper.if();
+    // document.getElementById("temp").rows[row].cells[col].innerHTML =
+    //   "<img src=https://www.shutterstock.com/image-vector/flag-icon-color-cartoon-sketch-600nw-1789996868.jpg width = 60px>";
   }
 }

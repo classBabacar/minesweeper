@@ -1,4 +1,4 @@
-import DisplayView from "../views/display.js";
+import ViewHandler from "../views/viewhandler.js";
 
 const btn = document
   .getElementById("form")
@@ -10,6 +10,6 @@ const btn = document
     const cols = formData.get("cols");
     const minesToPlace = formData.get("mines");
 
-    const display = new DisplayView(rows, cols, minesToPlace);
+    const display = new ViewHandler(rows, cols, minesToPlace);
     display.displayBoard();
   });
