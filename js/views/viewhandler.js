@@ -10,14 +10,10 @@ export default class ViewHandler {
   }
 
   displayBoard() {
-    let vh = this;
-    let grid = this.clickableGrid(function (el, row, col, action) {
-      // This will be used to call the minesweeper model
-      console.log("You clicked on element:", el);
-      console.log("You clicked on row:", row);
-      console.log("You clicked on col:", col);
-      console.log("You did this action:", action);
-      vh.setDocumentToFlag(row, col);
+    let obj = this;
+    let grid = this.clickableGrid(function (row, col, action) {
+      //TODO: changed this based on user action that is passed in callback via eventListener
+      obj.setGridPositionToFlag(row, col);
     });
     document.body.appendChild(grid);
   }
@@ -30,13 +26,15 @@ export default class ViewHandler {
       for (let c = 0; c < this.cols; ++c) {
         let cell = tr.appendChild(document.createElement("td"));
         // cell.innerHTML = this.minesweeper.getCellValue(r, c); // Comment to help visual board
+
+        // TODO: handle left/right clicking and replace the flag action
         cell.addEventListener(
           "click",
-          (function (el, r, c, action) {
+          (function (r, c, action) {
             return function () {
-              callback(el, r, c, "flag");
+              callback(r, c, action);
             };
-          })(cell, r, c, "click"),
+          })(r, c, "flag"),
           false
         );
       }
@@ -44,7 +42,7 @@ export default class ViewHandler {
     return grid;
   }
 
-  setDocumentToFlag(row, col) {
+  setGridPositionToFlag(row, col) {
     this.minesweeper.toFlag(row, col);
     let isFlag = this.minesweeper.isFlag(row, col);
 
