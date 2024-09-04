@@ -18,21 +18,18 @@ export default class ViewHandler {
       console.log("You clicked on col:", col);
       console.log("You did this action:", action);
       vh.setDocumentToFlag(row, col);
-      this.minesweeper.setFlag(row, col);
-      console.log("this location is", this.minesweeper.isFlag);
     });
     document.body.appendChild(grid);
   }
 
   clickableGrid(callback) {
     let grid = document.createElement("table");
-    grid.className = "grid";
-    grid.id = "temp";
+    grid.id = "grid";
     for (let r = 0; r < this.rows; ++r) {
       let tr = grid.appendChild(document.createElement("tr"));
       for (let c = 0; c < this.cols; ++c) {
         let cell = tr.appendChild(document.createElement("td"));
-        cell.innerHTML = this.minesweeper.getCellValue(r, c);
+        // cell.innerHTML = this.minesweeper.getCellValue(r, c); // Comment to help visual board
         cell.addEventListener(
           "click",
           (function (el, r, c, action) {
@@ -48,8 +45,12 @@ export default class ViewHandler {
   }
 
   setDocumentToFlag(row, col) {
-    // let isFlag = this.minesweeper.if();
-    // document.getElementById("temp").rows[row].cells[col].innerHTML =
-    //   "<img src=https://www.shutterstock.com/image-vector/flag-icon-color-cartoon-sketch-600nw-1789996868.jpg width = 60px>";
+    this.minesweeper.toFlag(row, col);
+    let isFlag = this.minesweeper.isFlag(row, col);
+
+    // console.log(`flag[${row}][${col}] is set to: ${isFlag}`); // Comment to see flag statuses
+    document.getElementById("grid").rows[row].cells[col].innerHTML = isFlag
+      ? "<img src=https://www.shutterstock.com/image-vector/flag-icon-color-cartoon-sketch-600nw-1789996868.jpg width = 60px>"
+      : "";
   }
 }

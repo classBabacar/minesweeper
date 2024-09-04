@@ -101,8 +101,8 @@ export default class Minesweeper {
     return this.board[row][col].isFlag;
   }
 
-  setFlag(row, col) {
-    return this.board[row][col].setFlag;
+  toFlag(row, col) {
+    return (this.board[row][col].isFlag = -1);
   }
 
   expandField(row, col) {
