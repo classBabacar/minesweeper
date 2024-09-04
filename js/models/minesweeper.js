@@ -16,7 +16,7 @@ export default class Minesweeper {
     let boardString = "";
     for (let row = 0; row < this.rows; ++row) {
       for (let col = 0; col < this.cols; ++col) {
-        boardString += this.board[row][col].getCellValue() + " ";
+        boardString += this.board[row][col].value + " ";
       }
       boardString += "\n";
     }
@@ -43,7 +43,7 @@ export default class Minesweeper {
         const randomCol = this.generateCoordInBound(this.cols);
 
         minePositions.add(`${randomRow},${randomCol}`);
-        this.board[randomRow][randomCol].setCellToMine(this.mineValue);
+        this.board[randomRow][randomCol].value = this.mineValue;
       }
     }
   }
@@ -56,7 +56,7 @@ export default class Minesweeper {
   generateFieldCount() {
     for (let row = 0; row < this.rows; ++row) {
       for (let col = 0; col < this.cols; ++col) {
-        if (this.board[row][col].getCellValue() == this.mineValue)
+        if (this.board[row][col].value == this.mineValue)
           this.addMineCount(row, col);
       }
     }
@@ -84,7 +84,7 @@ export default class Minesweeper {
         newCol < 0 ||
         newRow >= this.rows ||
         newCol >= this.cols ||
-        this.board[newRow][newCol].getCellValue() == this.mineValue
+        this.board[newRow][newCol].value == this.mineValue
       ) {
         continue;
       }
@@ -94,7 +94,15 @@ export default class Minesweeper {
   }
 
   getCellValue(row, col) {
-    return this.board[row][col].getCellValue();
+    return this.board[row][col].value;
+  }
+
+  isFlag(row, col) {
+    return this.board[row][col].isFlag;
+  }
+
+  setFlag(row, col) {
+    return this.board[row][col].setFlag;
   }
 
   expandField(row, col) {

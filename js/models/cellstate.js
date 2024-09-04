@@ -1,26 +1,35 @@
 export default class CellState {
   constructor() {
     this.value = 0;
-    this.state = "unopened";
+    this.isFlag = false;
+    this.isOpen = false;
   }
 
-  setCellToMine(value) {
-    this.value = value;
+  set value(val) {
+    this._value = val;
   }
 
-  setCellToFlag() {
-    this.state = "flagged";
+  set isFlag(_) {
+    this._isFlag = !this.isFlag;
   }
 
-  getCellValue() {
-    return this.value;
+  get isFlag() {
+    return this._isFlag;
   }
 
-  getCellState() {
-    return this.state;
+  get value() {
+    return this._value;
+  }
+
+  get isOpen() {
+    return this._isOpen;
+  }
+
+  set isOpen(_) {
+    this._isOpen = true;
   }
 
   incrementCellValue() {
-    this.value++;
+    this._value++;
   }
 }
