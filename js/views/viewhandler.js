@@ -12,10 +12,26 @@ export default class ViewHandler {
   displayBoard() {
     let obj = this;
     let grid = this.clickableGrid(function (row, col, action) {
-      //TODO: changed this based on user action that is passed in callback via eventListener
-      obj.setGridPositionToFlag(row, col);
+      console.log("You clicked on row:", row);
+      console.log("You clicked on col:", col);
+      console.log("You did this action:", action);
+      obj.handleAction(row, col, action);
     });
     document.body.appendChild(grid);
+  }
+
+  handleAction(row, col, action) {
+    switch (action) {
+      case "leftclick":
+        //TODO: Fill with game logic
+        document.getElementById("grid").rows[row].cells[col].innerHTML =
+          "<img src=https://upload.wikimedia.org/wikipedia/en/7/73/Trollface.png width = 60px>";
+        break;
+
+      case "rightclick":
+        this.setGridPositionToFlag(row, col);
+        break;
+    }
   }
 
   clickableGrid(callback) {
@@ -26,15 +42,20 @@ export default class ViewHandler {
       for (let c = 0; c < this.cols; ++c) {
         let cell = tr.appendChild(document.createElement("td"));
         // cell.innerHTML = this.minesweeper.getCellValue(r, c); // Comment to help visual board
-
-        // TODO: handle left/right clicking and replace the flag action
         cell.addEventListener(
           "click",
-          (function (r, c, action) {
-            return function () {
-              callback(r, c, action);
-            };
-          })(r, c, "flag"),
+          function () {
+            return callback(r, c, "leftclick");
+          },
+          false
+        );
+
+        cell.addEventListener(
+          "contextmenu",
+          function (evt) {
+            evt.preventDefault();
+            return callback(r, c, "rightclick");
+          },
           false
         );
       }
@@ -46,7 +67,7 @@ export default class ViewHandler {
     this.minesweeper.toFlag(row, col);
     let isFlag = this.minesweeper.isFlag(row, col);
 
-    // console.log(`flag[${row}][${col}] is set to: ${isFlag}`); // Comment to see flag statuses
+    console.log(`flag[${row}][${col}] is set to: ${isFlag}`); // Comment to see flag statuses
     document.getElementById("grid").rows[row].cells[col].innerHTML = isFlag
       ? "<img src=https://www.shutterstock.com/image-vector/flag-icon-color-cartoon-sketch-600nw-1789996868.jpg width = 60px>"
       : "";
