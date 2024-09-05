@@ -26,7 +26,7 @@ export default class ViewHandler {
         break;
 
       case "rightclick":
-        this.setGridPositionToFlag(row, col);
+        this.setCellToFlag(row, col);
         break;
     }
   }
@@ -60,9 +60,9 @@ export default class ViewHandler {
     return grid;
   }
 
-  setGridPositionToFlag(row, col) {
-    this.minesweeper.toFlag(row, col);
-    let isFlag = this.minesweeper.isFlag(row, col);
+  setCellToFlag(row, col) {
+    this.minesweeper.setCelltoFlag(row, col);
+    let isFlag = this.minesweeper.isCellFlag(row, col);
 
     // console.log(`flag[${row}][${col}] is set to: ${isFlag}`); // Comment to see flag statuses
     document.getElementById("grid").rows[row].cells[col].innerHTML = isFlag

@@ -97,12 +97,12 @@ export default class Minesweeper {
     return this.board[row][col].value;
   }
 
-  isFlag(row, col) {
+  isCellFlag(row, col) {
     return this.board[row][col].isFlag;
   }
 
-  toFlag(row, col) {
-    return (this.board[row][col].isFlag = -1);
+  setCelltoFlag(row, col) {
+    return (this.board[row][col].isFlag = NaN);
   }
 
   expandField(row, col) {
