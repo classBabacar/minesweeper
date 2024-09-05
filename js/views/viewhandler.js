@@ -20,9 +20,7 @@ export default class ViewHandler {
   handleAction(row, col, action) {
     switch (action) {
       case "leftclick":
-        //TODO: Fill with game logic
-        document.getElementById("grid").rows[row].cells[col].innerHTML =
-          "<img src=https://upload.wikimedia.org/wikipedia/en/7/73/Trollface.png width = 60px>";
+        this.expandCell(row, col);
         break;
 
       case "rightclick":
@@ -60,11 +58,20 @@ export default class ViewHandler {
     return grid;
   }
 
+  expandCell(row, col) {
+    if (this.minesweeper.isCellFlag(row, col)) return;
+
+    this.minesweeper.setCellToOpen(row, col);
+    document.getElementById("grid").rows[row].cells[col].innerHTML =
+      this.minesweeper.getCellValue(row, col);
+  }
+
   setCellToFlag(row, col) {
+    if (this.minesweeper.isCellOpen(row, col)) return;
+
     this.minesweeper.setCelltoFlag(row, col);
     let isFlag = this.minesweeper.isCellFlag(row, col);
 
-    // console.log(`flag[${row}][${col}] is set to: ${isFlag}`); // Comment to see flag statuses
     document.getElementById("grid").rows[row].cells[col].innerHTML = isFlag
       ? "<img src=https://www.shutterstock.com/image-vector/flag-icon-color-cartoon-sketch-600nw-1789996868.jpg width = 60px>"
       : "";

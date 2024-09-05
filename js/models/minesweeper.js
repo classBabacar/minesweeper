@@ -101,11 +101,19 @@ export default class Minesweeper {
     return this.board[row][col].isFlag;
   }
 
-  setCelltoFlag(row, col) {
-    return (this.board[row][col].isFlag = NaN);
+  isCellOpen(row, col) {
+    return this.board[row][col].isOpen;
   }
 
-  expandField(row, col) {
+  setCelltoFlag(row, col) {
+    this.board[row][col].isFlag = true;
+  }
+
+  setCellToOpen(row, col) {
+    this.board[row][col].isOpen = true;
+  }
+
+  expandCell(row, col) {
     // Case 1: If a user clicks a number, reveal that number
     // Case 2: If a user clicks a 0/empty space, expand out in all directions until you hit a number
     // Case 3: If a user clicks a mine, game over :)
