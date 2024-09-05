@@ -12,9 +12,6 @@ export default class ViewHandler {
   displayBoard() {
     let obj = this;
     let grid = this.clickableGrid(function (row, col, action) {
-      console.log("You clicked on row:", row);
-      console.log("You clicked on col:", col);
-      console.log("You did this action:", action);
       obj.handleAction(row, col, action);
     });
     document.body.appendChild(grid);
@@ -67,7 +64,7 @@ export default class ViewHandler {
     this.minesweeper.toFlag(row, col);
     let isFlag = this.minesweeper.isFlag(row, col);
 
-    console.log(`flag[${row}][${col}] is set to: ${isFlag}`); // Comment to see flag statuses
+    // console.log(`flag[${row}][${col}] is set to: ${isFlag}`); // Comment to see flag statuses
     document.getElementById("grid").rows[row].cells[col].innerHTML = isFlag
       ? "<img src=https://www.shutterstock.com/image-vector/flag-icon-color-cartoon-sketch-600nw-1789996868.jpg width = 60px>"
       : "";
