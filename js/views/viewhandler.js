@@ -32,15 +32,14 @@ export default class ViewHandler {
   clickableGrid(callback) {
     let grid = document.createElement("table");
     grid.id = "grid";
-    for (let r = 0; r < this.rows; ++r) {
+    for (let row = 0; row < this.rows; ++row) {
       let tr = grid.appendChild(document.createElement("tr"));
-      for (let c = 0; c < this.cols; ++c) {
+      for (let col = 0; col < this.cols; ++col) {
         let cell = tr.appendChild(document.createElement("td"));
-        // cell.innerHTML = this.minesweeper.getCellValue(r, c); // Comment to help visual board
         cell.addEventListener(
           "click",
           function () {
-            return callback(r, c, "leftclick");
+            return callback(row, col, "leftclick");
           },
           false
         );
@@ -49,7 +48,7 @@ export default class ViewHandler {
           "contextmenu",
           function (evt) {
             evt.preventDefault();
-            return callback(r, c, "rightclick");
+            return callback(row, col, "rightclick");
           },
           false
         );
