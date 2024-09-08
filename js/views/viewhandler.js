@@ -70,7 +70,6 @@ export default class ViewHandler {
 
     this.minesweeper.setCelltoFlag(row, col);
     let isFlag = this.minesweeper.isCellFlag(row, col);
-
     document.getElementById("grid").rows[row].cells[col].innerHTML = isFlag
       ? "<img src=https://www.shutterstock.com/image-vector/flag-icon-color-cartoon-sketch-600nw-1789996868.jpg width = 60px>"
       : "";

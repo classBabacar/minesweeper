@@ -6,6 +6,7 @@ export default class Minesweeper {
     this.cols = cols;
     this.minesToPlace = minesToPlace;
     this.mineValue = -999; // value used to indicate a mine
+    this.availableFlags = minesToPlace;
 
     this.board = this.setupBoard();
     this.placeMines();
@@ -97,6 +98,10 @@ export default class Minesweeper {
     return this.board[row][col].value;
   }
 
+  getAvailableFlags() {
+    return this.availableFlags;
+  }
+
   isCellFlag(row, col) {
     return this.board[row][col].isFlag;
   }
@@ -106,7 +111,17 @@ export default class Minesweeper {
   }
 
   setCelltoFlag(row, col) {
-    this.board[row][col].isFlag = !this.board[row][col].isFlag;
+    let flagStatus = !this.board[row][col].isFlag;
+
+    if (flagStatus && this.availableFlags > 0) {
+      this.board[row][col].isFlag = flagStatus;
+      this.availableFlags--;
+    } else if (flagStatus && this.availableFlags == 0) {
+      return;
+    } else if (!flagStatus) {
+      this.board[row][col].isFlag = flagStatus;
+      this.availableFlags++;
+    }
   }
 
   setCellToOpen(row, col) {
