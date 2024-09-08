@@ -106,7 +106,7 @@ export default class Minesweeper {
   }
 
   setCelltoFlag(row, col) {
-    this.board[row][col].isFlag = true;
+    this.board[row][col].isFlag = !this.board[row][col].isFlag;
   }
 
   setCellToOpen(row, col) {

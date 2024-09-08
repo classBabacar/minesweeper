@@ -13,8 +13,8 @@ export default class CellState {
     return this._value;
   }
 
-  set isFlag(_) {
-    this._isFlag = !this._isFlag;
+  set isFlag(val) {
+    this._isFlag = val;
   }
 
   get isFlag() {
@@ -25,8 +25,8 @@ export default class CellState {
     return this._isOpen;
   }
 
-  set isOpen(_) {
-    this._isOpen = true;
+  set isOpen(val) {
+    this._isOpen = val;
   }
 
   incrementCellValue() {
