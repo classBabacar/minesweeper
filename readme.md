@@ -17,4 +17,4 @@ This game has a lot of variations and possibilities. I will discuss things that 
 
 1. TBD
 
-Play Game Here: [GitHub.IO](https://classbabacar.github.io/minesweeper/)
+Play Game Here: [github.io](https://classbabacar.github.io/minesweeper/)
