@@ -62,7 +62,7 @@ export default class ViewHandler {
 
     this.minesweeper.expandCell(row, col);
 
-    //TODO: after expanding is complete reveal all of the values to the user
+    //TODO: after expanding is complete reveal all of the values to the user, logic below needs to be in a loop
     this.minesweeper.setCellToOpen(row, col);
     document.getElementById("grid").rows[row].cells[col].innerHTML =
       this.minesweeper.getCellValue(row, col);
