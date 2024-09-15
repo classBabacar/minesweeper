@@ -60,6 +60,9 @@ export default class ViewHandler {
   expandCell(row, col) {
     if (this.minesweeper.isCellFlag(row, col)) return;
 
+    this.minesweeper.expandCell(row, col);
+
+    //TODO: after expanding is complete reveal all of the values to the user
     this.minesweeper.setCellToOpen(row, col);
     document.getElementById("grid").rows[row].cells[col].innerHTML =
       this.minesweeper.getCellValue(row, col);
