@@ -131,6 +131,7 @@ export default class Minesweeper {
   }
 
   expandCell(row, col) {
-    this.algorithms.bfsExpandCell(row, col);
+    //TODO: Have this return a result(type bool?), to determine if a user hit a mine or not
+    this.algorithms.bfsExpandCell(this.board, row, col);
   }
 }
