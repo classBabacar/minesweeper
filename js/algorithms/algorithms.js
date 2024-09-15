@@ -1,9 +1,8 @@
 // Eventually will try to incorporate other algorithms for the computer aspect of this game
-// Also will use inheritance for various algorithms
-export default class BreadthFirstSearch {
+export default class Algorithms {
   constructor() {}
 
-  expandCell(row, col) {
+  bfsExpandCell(row, col) {
     // Case 1: If a user clicks a number, reveal that number
     // Case 2: If a user clicks a 0/empty space, expand out in all directions until you hit a number (most likely using bfs algorithm)
     // Case 3: If a user clicks a mine, game over :)

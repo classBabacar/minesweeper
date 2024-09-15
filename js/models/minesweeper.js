@@ -1,5 +1,5 @@
 import CellState from "./cellstate.js";
-import BFS from "../algorithms/bfs.js";
+import Algorithms from "../algorithms/algorithms.js";
 
 export default class Minesweeper {
   constructor(rows, cols, minesToPlace) {
@@ -9,7 +9,7 @@ export default class Minesweeper {
     this.mineValue = -999; // value used to indicate a mine
     this.availableFlags = minesToPlace;
 
-    this.bfs = new BFS();
+    this.algorithms = new Algorithms();
     this.board = this.setupBoard();
     this.placeMines();
     this.generateFieldCount();
@@ -131,6 +131,6 @@ export default class Minesweeper {
   }
 
   expandCell(row, col) {
-    this.bfs.expandCell(row, col);
+    this.algorithms.bfsExpandCell(row, col);
   }
 }
