@@ -61,13 +61,15 @@ export default class ViewHandler {
     if (this.minesweeper.isCellFlag(row, col)) return;
 
     // TODO: End the game, but how? maybe call minesweeper object and reset the game, then also update frontend?
-    let response = this.minesweeper.expandCell(row, col);
-    if (!response) console.log("Game is over -- TEST");
+    let gameStatus = this.minesweeper.expandCell(row, col);
+    if (!gameStatus) console.log("Game Over -- TEST");
 
     //TODO: after expanding is complete reveal all of the values to the user, logic below needs to be in a loop, to express the expand
     this.minesweeper.setCellToOpen(row, col);
     document.getElementById("grid").rows[row].cells[col].innerHTML =
       this.minesweeper.getCellValue(row, col);
+
+    //TODO: Indicate to user they clicked an empty cell, possibly change the color of the tile
   }
 
   setCellToFlag(row, col) {
