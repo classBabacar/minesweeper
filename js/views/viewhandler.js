@@ -64,12 +64,12 @@ export default class ViewHandler {
     let gameStatus = this.minesweeper.expandCell(row, col);
     if (!gameStatus) console.log("Game Over -- TEST");
 
-    //TODO: after expanding is complete reveal all of the values to the user, logic below needs to be in a loop, to express the expand
+    // TODO: after expanding in the model is complete reveal all of the values to the user (that are opened), logic below needs to be in a loop, to express the expand
     this.minesweeper.setCellToOpen(row, col);
     document.getElementById("grid").rows[row].cells[col].innerHTML =
       this.minesweeper.getCellValue(row, col);
 
-    //TODO: Indicate to user they clicked an empty cell, possibly change the color of the tile
+    // TODO: Indicate to user they clicked an empty cell, possibly change the color of the tile
   }
 
   setCellToFlag(row, col) {
