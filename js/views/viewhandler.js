@@ -60,7 +60,9 @@ export default class ViewHandler {
   expandCell(row, col) {
     if (this.minesweeper.isCellFlag(row, col)) return;
 
-    this.minesweeper.expandCell(row, col);
+    // TODO: End the game, but how, maybe call minesweeper object and reset the game?
+    let response = this.minesweeper.expandCell(row, col);
+    if (!response) console.log("Game is over -- TEST");
 
     //TODO: after expanding is complete reveal all of the values to the user, logic below needs to be in a loop
     this.minesweeper.setCellToOpen(row, col);

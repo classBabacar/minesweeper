@@ -9,10 +9,11 @@ export default class Minesweeper {
     this.mineValue = -999; // value used to indicate a mine
     this.availableFlags = minesToPlace;
 
-    this.algorithms = new Algorithms();
     this.board = this.setupBoard();
     this.placeMines();
     this.generateFieldCount();
+
+    this.algorithms = new Algorithms(this.mineValue);
   }
 
   toString() {
@@ -131,7 +132,6 @@ export default class Minesweeper {
   }
 
   expandCell(row, col) {
-    //TODO: Have this return a result(type bool?), to determine if a user hit a mine or not
-    this.algorithms.bfsExpandCell(this.board, row, col);
+    return this.algorithms.bfsExpandCell(this.board, row, col);
   }
 }
