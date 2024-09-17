@@ -4,14 +4,16 @@ I love remaking bite-sized games like this. As a developer, I get told not to re
 
 ## Bug Fixes (UI)
 
-1. If a user clicks a cell, prevent them from setting it as a flag. (9/5/2024)
-2. If a user sets a cell to a flag, prevent them from clicking it to expand it, until it's unflagged. (9/5/2024)
+1. If a player clicks a cell, prevent them from setting it as a flag. (9/5/2024)
+2. If a player sets a cell to a flag, prevent them from clicking it to expand it, until it's unflagged. (9/5/2024)
 
 ## Game Considerations
 
 This game has a lot of variations and possibilities. I will discuss things that were added in my implementation of this game that don't necessarily exist in the original version.
 
-1. A feature that I thought would be neat is to limit the user's flag count, in the original version of this game, you could set as many flags as possible because the mine count was a hard-coded variable behind the scenes, but in my game, I allow users to set their mine count, so I believe it makes sense to control how many flags a user can set, that is proportional to the number of mines.
+1. A feature that I thought would be neat is to limit the players's flag count, in the original version of this game, you could set as many flags as possible because the mine count was a hard-coded variable behind the scenes, but in my game, I allow players to set their mine count, so I believe it makes sense to control how many flags a player can set, that is proportional to the number of mines.
+
+2. To add a bit more depth to the game, incase you set a cell to a flag, and happen to click an empty cell that interacts with that flagged cell, the spread operation ignores that flag. I think this feature makes the game more challenging, because a player needs to make sure the cell they flag is a mine, or it could hurt them in the long run.
 
 ## Features
 
