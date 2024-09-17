@@ -40,7 +40,7 @@ export default class Algorithms {
         if (newRow < 0 || newCol < 0 || newRow >= rows || newCol >= cols)
           continue;
 
-        if (!board[newRow][newCol].isOpen) {
+        if (!board[newRow][newCol].isOpen && !board[newRow][newCol].isFlag) {
           queue.push([newRow, newCol]);
         }
       }
