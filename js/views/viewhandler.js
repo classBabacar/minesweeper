@@ -69,6 +69,8 @@ export default class ViewHandler {
         if (this.minesweeper.isCellOpen(row, col)) {
           document.getElementById("grid").rows[row].cells[col].innerHTML =
             this.minesweeper.getCellValue(row, col);
+
+          document.getElementById("grid").rows[row].cells[col].id = "clicked";
         }
       }
     }
