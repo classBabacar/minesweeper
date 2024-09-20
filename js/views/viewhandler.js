@@ -67,22 +67,26 @@ export default class ViewHandler {
     for (let row = 0; row < this.rows; ++row) {
       for (let col = 0; col < this.cols; ++col) {
         if (this.minesweeper.isCellOpen(row, col)) {
-          document.getElementById("grid").rows[row].cells[col].innerHTML =
-            this.minesweeper.getCellValue(row, col);
+          const cellValue = this.minesweeper.getCellValue(row, col);
+          const element = document.getElementById("grid").rows[row].cells[col];
 
-          document.getElementById("grid").rows[row].cells[col].id = "clicked";
+          // We dont want to display the 0 value, makes grid confusing
+          element.innerHTML = cellValue == 0 ? "" : cellValue;
+          element.id = "clicked";
         }
       }
     }
-    // TODO: Indicate to user they clicked an empty cell, possibly change the color of the tile
   }
 
   setCellToFlag(row, col) {
     if (this.minesweeper.isCellOpen(row, col)) return;
 
     this.minesweeper.setCelltoFlag(row, col);
-    let isFlag = this.minesweeper.isCellFlag(row, col);
-    document.getElementById("grid").rows[row].cells[col].innerHTML = isFlag
+
+    const isFlag = this.minesweeper.isCellFlag(row, col);
+    const element = document.getElementById("grid").rows[row].cells[col];
+
+    element.innerHTML = isFlag
       ? "<img src=https://www.shutterstock.com/image-vector/flag-icon-color-cartoon-sketch-600nw-1789996868.jpg width = 60px>"
       : "";
   }
