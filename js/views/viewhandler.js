@@ -70,7 +70,7 @@ export default class ViewHandler {
           const cellValue = this.minesweeper.getCellValue(row, col);
           const element = document.getElementById("grid").rows[row].cells[col];
 
-          // We dont want to display the 0 value, makes grid confusing
+          // We don't want to display the 0 cell value, makes grid confusing
           element.innerHTML = cellValue == 0 ? "" : cellValue;
           element.id = "clicked";
         }
