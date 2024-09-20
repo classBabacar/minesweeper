@@ -12,3 +12,7 @@
   text-align: center;
   font-size: 30px;
 }
+
+#clicked {
+  background-color: aqua;
+}
