@@ -8,11 +8,12 @@
   width: 75px;
   height: 75px;
   border: 6px solid #090909;
-  border-style: outset;
+  border-style: ridge;
   text-align: center;
-  font-size: 30px;
+  font-size: 35px;
 }
 
 #clicked {
-  background-color: aqua;
+  box-shadow: 5px 5px black;
+  background-color: lightgray;
 }
