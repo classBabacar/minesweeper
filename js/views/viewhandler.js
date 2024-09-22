@@ -86,6 +86,6 @@ export default class ViewHandler {
     const isFlag = this.minesweeper.isCellFlag(row, col);
     const element = document.getElementById("grid").rows[row].cells[col];
 
-    element.innerHTML = isFlag ? "<img src=images/flag.jpg width = 60px>" : "";
+    element.innerHTML = isFlag ? "<img src=images/flag.jpg width = 45px>" : "";
   }
 }
