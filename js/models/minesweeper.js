@@ -97,6 +97,13 @@ export default class Minesweeper {
     }
   }
 
+  checkIfGameOver() {
+    // TODO: Add game logic when game ended
+    // Case 1: if every cell is clicked  except the mines?
+    // Case 2: If a player flagged all the mines, this can lead to a lot of loopholes
+    // Case 3: Not sure what else
+  }
+
   getCellValue(row, col) {
     return this.board[row][col].value;
   }
