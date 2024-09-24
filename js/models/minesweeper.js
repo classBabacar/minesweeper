@@ -98,8 +98,8 @@ export default class Minesweeper {
   }
 
   checkIfGameOver() {
-    // TODO: Add game logic when game ended
-    // Case 1: if every cell is clicked  except the mines -> First choice, least loopholes
+    // TODO:
+    // Case 1: if every cell is clicked except the mines -> First choice, least loopholes
     // Case 2: If a player flagged all the mines, this can lead to a lot of loopholes -> Last choice, a lot of loopholes
   }
 
