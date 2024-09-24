@@ -60,7 +60,7 @@ export default class ViewHandler {
   expandCell(row, col) {
     if (this.minesweeper.isCellFlag(row, col)) return;
 
-    // TODO: End the game, but how? maybe call minesweeper object and reset the game, then also update frontend?
+    // TODO: End the game, but how? maybe call minesweeper object and reset the game, then also update frontend view?
     let gameStatus = this.minesweeper.expandCell(row, col);
     if (!gameStatus) console.log("Game Over -- TEST");
 
@@ -70,7 +70,7 @@ export default class ViewHandler {
           const cellValue = this.minesweeper.getCellValue(row, col);
           const element = document.getElementById("grid").rows[row].cells[col];
 
-          // We don't want to display the 0 cell value, makes grid confusing
+          // We don't want to display the 0 cell value, makes grid look confusing
           element.innerHTML = cellValue == 0 ? "" : cellValue;
           element.id = "clicked";
         }
