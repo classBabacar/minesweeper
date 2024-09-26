@@ -60,9 +60,12 @@ export default class ViewHandler {
   expandCell(row, col) {
     if (this.minesweeper.isCellFlag(row, col)) return;
 
-    // TODO: End the game, but how? maybe call minesweeper object and reset the game, then also update frontend view?
+    // TODO: Fix how game is ended, doesnt end properly and still takes inputs
     let gameStatus = this.minesweeper.expandCell(row, col);
-    if (!gameStatus) console.log("Game Over -- TEST");
+    if (!gameStatus || this.minesweeper.checkIfGameOver()) {
+      this.displayGameOver();
+      return;
+    }
 
     for (let row = 0; row < this.rows; ++row) {
       for (let col = 0; col < this.cols; ++col) {
@@ -87,5 +90,31 @@ export default class ViewHandler {
     const element = document.getElementById("grid").rows[row].cells[col];
 
     element.innerHTML = isFlag ? "<img src=images/flag.jpg width = 45px>" : "";
+  }
+
+  displayGameOver() {
+    // TODO: Make all of this code look cleaner
+    for (let row = 0; row < this.rows; ++row) {
+      for (let col = 0; col < this.cols; ++col) {
+        const cellValue = this.minesweeper.getCellValue(row, col);
+        const element = document.getElementById("grid").rows[row].cells[col];
+
+        this.minesweeper.setCellToOpen(row, col);
+        if (cellValue == this.minesweeper.mineValue) {
+          element.id = "bomb";
+        }
+
+        element.innerHTML =
+          cellValue == 0 // if cellValue == 0
+            ? "" // return empty
+            : cellValue == this.minesweeper.mineValue // if cellValue == mineValue
+            ? "<img src=images/bomb.jpg width = 65px>" // return bomb image
+            : cellValue; // otherwise return cell value
+      }
+    }
+
+    let result = document.createElement("p");
+    result.innerHTML = "Game Over";
+    document.body.appendChild(result);
   }
 }
