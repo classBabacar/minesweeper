@@ -62,6 +62,8 @@ export default class ViewHandler {
 
     // TODO: Fix how game is ended, doesnt end properly and still takes inputs
     let gameStatus = this.minesweeper.expandCell(row, col);
+
+    // Also think I don't need this gameStatus, the game over logic will handle it all
     if (!gameStatus || this.minesweeper.checkIfGameOver()) {
       this.displayGameOver();
       return;
