@@ -17,3 +17,7 @@
   box-shadow: 5px 5px black;
   background-color: lightgray;
 }
+
+#bomb {
+  background-color: red;
+}
