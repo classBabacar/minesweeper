@@ -98,9 +98,25 @@ export default class Minesweeper {
   }
 
   checkIfGameOver() {
-    // TODO:
-    // Case 1: if every cell is clicked except the mines -> First choice, least loopholes
-    // Case 2: If a player flagged all the mines, this can lead to a lot of loopholes -> Last choice, a lot of loopholes
+    let isGameOver = false;
+    let unopenedCells = 0;
+
+    // Case 1: Check to see if any mines are open
+    for (let row = 0; row < this.rows; ++row) {
+      for (let col = 0; col < this.cols; ++col) {
+        if (
+          this.board[row][col].value == this.mineValue &&
+          this.board[row][col].isOpen
+        ) {
+          isGameOver = true;
+        }
+
+        // Case 2: Perfect game, number of unopened cells equal to mine count
+        if (!this.board[row][col].isOpen) unopenedCells++;
+      }
+    }
+
+    return isGameOver || unopenedCells == this.minesToPlace;
   }
 
   getCellValue(row, col) {
@@ -138,6 +154,10 @@ export default class Minesweeper {
   }
 
   expandCell(row, col) {
-    return this.algorithms.bfsExpandCell(this.board, row, col);
+    this.algorithms.bfsExpandCell(this.board, row, col);
+  }
+
+  isBomb(row, col) {
+    return this.board[row][col].value == this.mineValue;
   }
 }

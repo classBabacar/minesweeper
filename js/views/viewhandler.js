@@ -58,17 +58,18 @@ export default class ViewHandler {
   }
 
   expandCell(row, col) {
+    // Don't allow player to click a flagged cell
     if (this.minesweeper.isCellFlag(row, col)) return;
 
-    // TODO: Fix how game is ended, doesnt end properly and still takes inputs
-    let gameStatus = this.minesweeper.expandCell(row, col);
+    this.minesweeper.expandCell(row, col);
 
-    // Also think I don't need this gameStatus, the game over logic will handle it all
-    if (!gameStatus || this.minesweeper.checkIfGameOver()) {
-      this.displayGameOver();
+    const didUserHitMine = this.minesweeper.isBomb(row, col);
+    if (this.minesweeper.checkIfGameOver() || didUserHitMine) {
+      this.displayGameOver(didUserHitMine);
       return;
     }
 
+    // rendering board
     for (let row = 0; row < this.rows; ++row) {
       for (let col = 0; col < this.cols; ++col) {
         if (this.minesweeper.isCellOpen(row, col)) {
@@ -94,8 +95,8 @@ export default class ViewHandler {
     element.innerHTML = isFlag ? "<img src=images/flag.jpg width = 45px>" : "";
   }
 
-  displayGameOver() {
-    // TODO: Make all of this code look cleaner
+  // TODO: Make all of this code look cleaner
+  displayGameOver(didUserHitMine) {
     for (let row = 0; row < this.rows; ++row) {
       for (let col = 0; col < this.cols; ++col) {
         const cellValue = this.minesweeper.getCellValue(row, col);
@@ -116,7 +117,13 @@ export default class ViewHandler {
     }
 
     let result = document.createElement("p");
-    result.innerHTML = "Game Over";
+
+    if (didUserHitMine) {
+      result.innerHTML = "Sorry, you lose";
+    } else {
+      result.innerHTML = "Good job, you win!";
+    }
+
     document.body.appendChild(result);
   }
 }
