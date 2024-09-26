@@ -5,11 +5,6 @@ export default class Algorithms {
   }
 
   bfsExpandCell(board, row, col) {
-    // Case 1: If a user clicks a mine, send them to the death realm (game over) :)
-    if (board[row][col].value == this.mineValue) return false;
-
-    // Case 2: If a user clicks a number greater than 0, reveal that number, and return
-    // Case 3: If a user clicks a 0/empty space, expand out in all directions until you hit a number
     const directions = [
       // [Row, Col] or [Y-Coordinate, X-Coordinate]
       [0, -1], // Left
@@ -30,8 +25,10 @@ export default class Algorithms {
       const [r, c] = queue.shift();
       board[r][c].isOpen = true;
 
-      if (board[r][c].value > 0) continue;
+      // Case 1: If a user clicks a mine or a number greater than 0, set that cell to open
+      if (board[r][c].value > 0 || board[r][c] == this.mineValue) continue;
 
+      // Case 2: If a user clicks a 0/empty space, expand out in all directions until you hit a number
       for (const direction of directions) {
         const newRow = direction[0] + r;
         const newCol = direction[1] + c;
@@ -39,12 +36,14 @@ export default class Algorithms {
         if (newRow < 0 || newCol < 0 || newRow >= rows || newCol >= cols)
           continue;
 
-        if (!board[newRow][newCol].isOpen && !board[newRow][newCol].isFlag) {
+        if (
+          !board[newRow][newCol].isOpen &&
+          !board[newRow][newCol].isFlag &&
+          board[newRow][newCol].value != this.mineValue
+        ) {
           queue.push([newRow, newCol]);
         }
       }
     }
-
-    return true;
   }
 }
