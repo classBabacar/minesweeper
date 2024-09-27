@@ -119,11 +119,12 @@ export default class ViewHandler {
     let result = document.createElement("p");
 
     if (didUserHitMine) {
-      result.innerHTML = "Sorry, you lose";
+      result.innerHTML = "Sorry, you lose  <br>";
     } else {
-      result.innerHTML = "Good job, you win!";
+      result.innerHTML = "Good job, you win! <br>";
     }
 
+    result.innerHTML += "Refresh page to play a new game, will fix that :)";
     document.body.appendChild(result);
   }
 }
