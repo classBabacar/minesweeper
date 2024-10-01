@@ -95,7 +95,6 @@ export default class ViewHandler {
     element.innerHTML = isFlag ? "<img src=images/flag.jpg width = 45px>" : "";
   }
 
-  // TODO: Make all of this code look cleaner
   displayGameOver(didUserHitMine) {
     for (let row = 0; row < this.rows; ++row) {
       for (let col = 0; col < this.cols; ++col) {
