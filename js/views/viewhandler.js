@@ -116,14 +116,14 @@ export default class ViewHandler {
     }
 
     let result = document.createElement("p");
-
     if (didUserHitMine) {
-      result.innerHTML = "Sorry, you lose  <br>";
+      result.innerHTML = "Sorry, you lose! <br> <br>";
     } else {
       result.innerHTML = "Good job, you win! <br>";
     }
 
-    result.innerHTML += "Refresh page to play a new game, will fix that :)";
+    result.innerHTML +=
+      "<button onClick=location.reload()> Click me to play again!</button>";
     document.body.appendChild(result);
   }
 }
