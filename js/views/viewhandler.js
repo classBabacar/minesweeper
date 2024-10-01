@@ -102,7 +102,6 @@ export default class ViewHandler {
         const cellValue = this.minesweeper.getCellValue(row, col);
         const element = document.getElementById("grid").rows[row].cells[col];
 
-        this.minesweeper.setCellToOpen(row, col);
         if (cellValue == this.minesweeper.mineValue) {
           element.id = "bomb";
         }
