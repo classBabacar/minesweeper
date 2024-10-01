@@ -109,6 +109,8 @@ export default class ViewHandler {
         element.innerHTML =
           cellValue == 0 // if cellValue == 0
             ? "" // return empty
+            : this.minesweeper.isCellFlag(row, col) // if cell is a flag
+            ? "<img src=images/flag.jpg width = 45px>" // return flag image
             : cellValue == this.minesweeper.mineValue // if cellValue == mineValue
             ? "<img src=images/bomb.jpg width = 65px>" // return bomb image
             : cellValue; // otherwise return cell value
