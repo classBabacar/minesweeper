@@ -2,6 +2,7 @@ import ViewHandler from "../views/viewhandler.js";
 
 document.getElementById("form").addEventListener("submit", function (e) {
   e.preventDefault();
+  document.getElementById("game").disabled = true;
 
   const formData = new FormData(form);
   const rows = formData.get("rows");
