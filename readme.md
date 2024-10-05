@@ -16,8 +16,4 @@ This game has a lot of variations and possibilities. I will discuss things that 
 
 2. To add a bit more depth to the game, incase you set a cell to a flag, and happen to click an empty cell that interacts with that flagged cell, the spread operation ignores that flag. I think this feature makes the game more challenging, because a player needs to make sure the cell they flag is a mine, or it could hurt them in the long run.
 
-## Features
-
-1. TBD
-
 Play Game Here: [github.io](https://classbabacar.github.io/minesweeper/)
