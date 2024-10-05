@@ -120,7 +120,7 @@ export default class ViewHandler {
     if (didUserHitMine) {
       result.innerHTML = "Sorry, you lose! <br> <br>";
     } else {
-      result.innerHTML = "Good job, you win! <br>";
+      result.innerHTML = "Congrats, you win! <br>";
     }
 
     result.innerHTML +=
