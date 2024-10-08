@@ -124,7 +124,7 @@ export default class ViewHandler {
     }
 
     result.innerHTML +=
-      "<button onClick=location.reload()> Click me to play again!</button>";
+      "<button onClick=location.reload()> Play Again!</button>";
     document.body.appendChild(result);
   }
 }
