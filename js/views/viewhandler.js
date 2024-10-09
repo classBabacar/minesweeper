@@ -116,7 +116,7 @@ export default class ViewHandler {
       }
     }
 
-    let result = document.createElement("p");
+    const result = document.createElement("p");
     if (didUserHitMine) {
       result.innerHTML = "Sorry, you lose! <br> <br>";
     } else {
