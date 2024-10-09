@@ -1,20 +1,20 @@
 #grid {
-  margin: 5em auto;
+  margin: 0px auto;
   border-collapse: collapse;
 }
 
 #grid td {
   cursor: pointer;
-  width: 75px;
-  height: 75px;
-  border: 6px solid #090909;
+  width: 45px;
+  height: 45px;
+  border: 3.5px solid #090909;
   border-style: ridge;
   text-align: center;
-  font-size: 37px;
+  font-size: 27px;
 }
 
 #clicked {
-  box-shadow: 5px 5px black;
+  box-shadow: 4px 4px black;
   background-color: lightgray;
 }
 
