@@ -7,6 +7,7 @@ I love remaking bite-sized games like this. As a developer, I get told not to re
 1. If a player clicks a cell, prevent them from setting it as a flag. (9/5/2024)
 2. If a player sets a cell to a flag, prevent them from clicking it to expand it, until it's unflagged. (9/5/2024)
 3. It's not a bug fix per se, but if you flag a mine at some point in the game and hit a mine to lose the game, show the player positions they flagged correctly. (9/30/2024)
+4. After the game is won/lost, a player can keep clicking the board and the HTML button would stack infinitely. (10/10/2024)
 
 ## Game Considerations
 
