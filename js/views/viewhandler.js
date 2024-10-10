@@ -58,8 +58,12 @@ export default class ViewHandler {
   }
 
   expandCell(row, col) {
-    // Don't allow player to click a flagged cell
-    if (this.minesweeper.isCellFlag(row, col)) return;
+    // Don't allow player to click a flagged cell or try to reopen a opened cell
+    if (
+      this.minesweeper.isCellFlag(row, col) ||
+      this.minesweeper.isCellOpen(row, col)
+    )
+      return;
 
     this.minesweeper.expandCell(row, col);
 
