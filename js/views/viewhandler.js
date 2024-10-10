@@ -92,9 +92,7 @@ export default class ViewHandler {
     const isFlag = this.minesweeper.isCellFlag(row, col);
     const element = document.getElementById("grid").rows[row].cells[col];
 
-    element.innerHTML = isFlag
-      ? "<img src=images/flag.jpg width = 38px height = 38px>"
-      : "";
+    element.innerHTML = isFlag ? "<img id='icon' src=images/flag.jpg>" : "";
   }
 
   displayGameOver(didUserHitMine) {
@@ -111,9 +109,9 @@ export default class ViewHandler {
           cellValue == 0 // if cellValue == 0
             ? "" // return empty
             : this.minesweeper.isCellFlag(row, col) // if cell is a flag
-            ? "<img src=images/flag.jpg width = 38px height = 38px>" // return flag image
+            ? "<img id='icon' src=images/flag.jpg>" // return flag image
             : cellValue == this.minesweeper.mineValue // if cellValue == mineValue
-            ? "<img src=images/bomb.jpg width = 38px>" // return bomb image
+            ? "<img id='icon' src=images/bomb.jpg>" // return bomb image
             : cellValue; // otherwise return cell value
       }
     }
