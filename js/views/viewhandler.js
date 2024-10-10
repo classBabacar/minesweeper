@@ -101,6 +101,9 @@ export default class ViewHandler {
         const cellValue = this.minesweeper.getCellValue(row, col);
         const element = document.getElementById("grid").rows[row].cells[col];
 
+        // set all cells to open status so users can't do anything on board after the game is finished
+        this.minesweeper.setCellToOpen(row, col);
+
         if (cellValue == this.minesweeper.mineValue) {
           element.id = "bomb";
         }
