@@ -28,7 +28,7 @@ export default class Minesweeper {
   }
 
   setupBoard() {
-    let board = [];
+    const board = [];
     for (let row = 0; row < this.rows; ++row) {
       board[row] = [];
       for (let col = 0; col < this.cols; ++col)
