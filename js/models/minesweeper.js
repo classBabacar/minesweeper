@@ -13,7 +13,7 @@ export default class Minesweeper {
     this.placeMines();
     this.generateFieldCount();
 
-    this.algorithms = new Algorithms(this.mineValue);
+    this.algorithms = new Algorithms(this.mineValue, this.rows, this.cols);
   }
 
   toString() {
