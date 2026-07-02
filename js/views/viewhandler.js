@@ -41,7 +41,7 @@ export default class ViewHandler {
           function () {
             return callback(row, col, "leftclick");
           },
-          false
+          false,
         );
 
         cell.addEventListener(
@@ -50,7 +50,7 @@ export default class ViewHandler {
             evt.preventDefault();
             return callback(row, col, "rightclick");
           },
-          false
+          false,
         );
       }
     }
@@ -58,7 +58,6 @@ export default class ViewHandler {
   }
 
   expandCell(row, col) {
-    // Don't allow player to click a flagged cell or try to reopen a opened cell
     if (
       this.minesweeper.isCellFlag(row, col) ||
       this.minesweeper.isCellOpen(row, col)
@@ -73,16 +72,15 @@ export default class ViewHandler {
       return;
     }
 
-    // rendering board
-    for (let row = 0; row < this.rows; ++row) {
-      for (let col = 0; col < this.cols; ++col) {
-        if (this.minesweeper.isCellOpen(row, col)) {
-          const cellValue = this.minesweeper.getCellValue(row, col);
-          const element = document.getElementById("grid").rows[row].cells[col];
+    for (let r = 0; r < this.rows; ++r) {
+      for (let c = 0; c < this.cols; ++c) {
+        if (this.minesweeper.isCellOpen(r, c)) {
+          const cellValue = this.minesweeper.getCellValue(r, c);
+          const element = document.getElementById("grid").rows[r].cells[c];
 
-          // We don't want to display the 0 cell value, makes grid look confusing
           element.innerHTML = cellValue == 0 ? "" : cellValue;
-          element.id = "clicked";
+          element.classList.add("clicked");
+          if (cellValue > 0) element.classList.add(`n${cellValue}`);
         }
       }
     }
@@ -96,7 +94,9 @@ export default class ViewHandler {
     const isFlag = this.minesweeper.isCellFlag(row, col);
     const element = document.getElementById("grid").rows[row].cells[col];
 
-    element.innerHTML = isFlag ? "<img id='icon' src=images/flag.jpg>" : "";
+    element.innerHTML = isFlag
+      ? "<img class='icon' src='images/flag.jpg' alt='flag' width='40' height='40' />"
+      : "";
   }
 
   displayGameOver(didUserHitMine) {
@@ -116,22 +116,21 @@ export default class ViewHandler {
           cellValue == 0 // if cellValue == 0
             ? "" // return empty
             : this.minesweeper.isCellFlag(row, col) // if cell is a flag
-            ? "<img id='icon' src=images/flag.jpg>" // return flag image
-            : cellValue == this.minesweeper.mineValue // if cellValue == mineValue
-            ? "<img id='icon' src=images/bomb.jpg>" // return bomb image
-            : cellValue; // otherwise return cell value
+              ? "<img class='icon' src='images/flag.jpg' alt='flag' width='40' height='40' />"
+              : cellValue == this.minesweeper.mineValue // if cellValue == mineValue
+                ? "<img class='icon' src='images/bomb.jpg' alt='flag' width='40' height='40' />"
+                : cellValue; // otherwise return cell value
       }
     }
 
-    const result = document.createElement("p");
-    if (didUserHitMine) {
-      result.innerHTML = "Sorry, you lose! <br> ";
-    } else {
-      result.innerHTML = "Congrats, you win! <br>";
-    }
-
-    result.innerHTML +=
-      "<button onClick=location.reload()> Play Again!</button>";
-    document.body.appendChild(result);
+    const report = document.createElement("div");
+    report.className = `report ${didUserHitMine ? "lose" : "win"}`;
+    report.innerHTML = `
+    <div class="report-body">
+      <span>${didUserHitMine ? "Sorry, you lose" : "Congrats, you win"}</span>
+      <button onclick="location.reload()">Play again</button>
+    </div>
+  `;
+    document.body.appendChild(report);
   }
 }

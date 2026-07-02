@@ -37,7 +37,8 @@ export default class Algorithms {
       this.visited[r][c] = true;
 
       // Case 1: If a user clicks a mine or a number greater than 0, set that cell to open
-      if (board[r][c].value > 0 || board[r][c] == this.mineValue) continue;
+      if (board[r][c].value > 0 || board[r][c].value == this.mineValue)
+        continue;
 
       // Case 2: If a user clicks a 0/empty space, expand out in all directions until you hit a number
       for (const direction of directions) {

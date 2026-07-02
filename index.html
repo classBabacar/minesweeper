@@ -4,52 +4,74 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Minesweeper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
   </head>
   <body>
-    <form id="form">
-      <label for="rows">Number of Rows (5-25):</label>
-      <input
-        type="number"
-        id="rows"
-        name="rows"
-        min="5"
-        max="25"
-        value="10"
-        required
-      />
-      <br />
-      <label for="cols">Number of Columns (5-25):</label>
-      <input
-        type="number"
-        id="cols"
-        name="cols"
-        min="5"
-        max="25"
-        value="10"
-        required
-      />
-      <br />
-      <label for="mines">Number of Mines (5-25):</label>
-      <input
-        type="number"
-        id="mines"
-        name="mines"
-        min="5"
-        max="25"
-        value="10"
-        required
-      />
-      <br />
+    <main class="console">
+      <p class="eyebrow">Field Briefing</p>
+      <h1 class="title">Minesweeper</h1>
 
-      <p>
-        <b>Left Click:</b> Open cell <br />
-        <b>Right Click:</b> Set cell to flag
-      </p>
-      <p id="error" role="alert"></p>
+      <form id="form" class="panel">
+        <div class="field">
+          <label for="rows">Rows (5 - 25)</label>
+          <input
+            type="number"
+            id="rows"
+            name="rows"
+            min="5"
+            max="25"
+            value="10"
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="cols">Columns (5 - 25)</label>
+          <input
+            type="number"
+            id="cols"
+            name="cols"
+            min="5"
+            max="25"
+            value="10"
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="mines">Mines (5 - 25)</label>
+          <input
+            type="number"
+            id="mines"
+            name="mines"
+            min="5"
+            max="25"
+            value="10"
+            required
+          />
+        </div>
 
-      <button type="submit" id="game">Play Game</button>
-    </form>
+        <div class="divider"></div>
+
+        <dl class="legend">
+          <div class="legend-row">
+            <dt>Left Click -</dt>
+            <dd>Open cell</dd>
+          </div>
+          <div class="legend-row">
+            <dt>Right Click -</dt>
+            <dd>Flag cell</dd>
+          </div>
+        </dl>
+
+        <p id="error" class="error" role="alert"></p>
+
+        <button type="submit" id="game" class="deploy">Start</button>
+      </form>
+    </main>
 
     <script type="module" src="js/controllers/mainmenu.js"></script>
   </body>

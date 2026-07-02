@@ -3,11 +3,16 @@ import Algorithms from "../algorithms/algorithms.js";
 
 export default class Minesweeper {
   constructor(rows, cols, minesToPlace) {
-    this.rows = rows;
-    this.cols = cols;
-    this.minesToPlace = minesToPlace;
+    this.rows = Number(rows);
+    this.cols = Number(cols);
+    this.minesToPlace = Number(minesToPlace);
+
     this.mineValue = -999; // value used to indicate a mine
     this.availableFlags = minesToPlace;
+
+    if (minesToPlace >= rows * cols) {
+      throw new Error("minesToPlace must be less than rows * cols");
+    }
 
     this.board = this.setupBoard();
     this.placeMines();
