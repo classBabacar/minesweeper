@@ -2,12 +2,13 @@
 
 I love remaking bite-sized games like this. As a developer, I get told not to reinvent the wheel, but what if I am curious about how the wheel was made? There are probably hundreds of variations of this game, but to me, the fun part is getting into the thought process of how something was built algorithmically and the nuances of that problem.
 
-## Bug Fixes(UI)
+## Bug Fixes
 
 1. If a player clicks a cell, prevent them from setting it as a flag. (9/5/2024)
 2. If a player sets a cell to a flag, prevent them from clicking it to expand it, until it's unflagged. (9/5/2024)
 3. It's not a bug fix per se, but if you flag a mine at some point in the game and hit a mine to lose the game, show the player positions they flagged correctly. (9/30/2024)
 4. After the game is won/lost, a player can keep clicking the board and the HTML button would stack infinitely. (10/10/2024)
+5. Incorrect stop condition in BFS expansion: `board[r][c] == this.mineValue`compares a CellState object to a number (always false) — should be `board[r][c].value == this.   mineValue`. The buggy branch ran on every mine click, incorrectly flood-filling from the mine cell, but the corrupted state was masked because `displayGameOver` unconditionally overwrites all cell state right after. (7/2/2026)
 
 ## Game Considerations
 
