@@ -1,14 +1,31 @@
 import ViewHandler from "../views/viewhandler.js";
 
-document.getElementById("form").addEventListener("submit", function (e) {
+const form = document.getElementById("form");
+const gameButton = document.getElementById("game");
+const errorEl = document.getElementById("error");
+
+form.addEventListener("submit", function (e) {
   e.preventDefault();
-  document.getElementById("game").disabled = true;
+  errorEl.textContent = "";
 
-  const formData = new FormData(form);
-  const rows = formData.get("rows");
-  const cols = formData.get("cols");
-  const minesToPlace = formData.get("mines");
+  const formData = new FormData(e.target);
+  const rows = Number(formData.get("rows"));
+  const cols = Number(formData.get("cols"));
+  const minesToPlace = Number(formData.get("mines"));
 
-  const display = new ViewHandler(rows, cols, minesToPlace);
-  display.displayBoard();
+  if (minesToPlace >= rows * cols) {
+    errorEl.textContent = `Too many mines: max is ${rows * cols - 1} for a ${rows}x${cols} board.`;
+    return;
+  }
+
+  gameButton.disabled = true;
+
+  try {
+    const display = new ViewHandler(rows, cols, minesToPlace);
+    display.displayBoard();
+  } catch (err) {
+    console.error(err);
+    errorEl.textContent = "Something went wrong starting the game.";
+    gameButton.disabled = false;
+  }
 });
